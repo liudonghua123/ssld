@@ -210,7 +210,7 @@ data: {"id":"...","event":"cert.imported","source":"api","payload":{},"created_a
 
 ## 兼容性网关 / Compatibility gateway
 
-原有 allinssl 的 `POST /v1/{group}/{action}`（form-urlencoded 或 JSON）继续可用，共 71 个业务动作映射到与 REST 相同的服务层。分组：`login`、`cert`、`access`、`acme_account`、`workflow`、`monitor`、`report`、`setting`、`overview`、`private_ca`、`plugins`，另加 ssld 扩展组 `webhook`、`events`。
+旧式 `POST /v1/{group}/{action}` 网关（form-urlencoded 或 JSON）继续可用，共 71 个业务动作映射到与 REST 相同的服务层，便于存量集成平滑迁移。分组：`login`、`cert`、`access`、`acme_account`、`workflow`、`monitor`、`report`、`setting`、`overview`、`private_ca`、`plugins`，另加 ssld 扩展组 `webhook`、`events`。
 
 ```bash
 curl -X POST http://127.0.0.1:7979/v1/overview/get_overviews

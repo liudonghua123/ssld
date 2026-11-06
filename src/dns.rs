@@ -182,7 +182,7 @@ pub async fn test_access(core: &Shared, access: &Access) -> Result<Value> {
 // --- DNS-01 propagation check ------------------------------------------------
 // A tiny RFC 1035 UDP client. Keeping it in-process avoids a resolver crate and
 // lets operators point the check at the authoritative nameservers they
-// actually configured (allinssl's `nameservers` setting).
+// actually configured (`nameservers` setting).
 
 fn normalise_ns(input: &str) -> String {
     let s = input.trim().strip_prefix("udp://").unwrap_or(input.trim()).trim_end_matches('/');

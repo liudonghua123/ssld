@@ -1,4 +1,4 @@
-//! Compatibility gateway for allinssl's `POST /v1/{group}/{action}` form API.
+//! Legacy `POST /v1/{group}/{action}` form-API compatibility gateway.
 //! All 71 original business actions are mapped onto the same service layer as
 //! the modern REST API. CLI control actions (shutdown / restart / service
 //! toggles) are deliberately not implemented and return 410 Gone.

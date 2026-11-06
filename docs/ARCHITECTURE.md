@@ -2,7 +2,7 @@
 
 ## 设计目标
 
-1. **功能等价**：对照 allinssl 的 11 个路由分组、15 张 SQLite 表与前端页面重写全部业务模块。
+1. **API 完整**：11 个路由分组、15 张数据表对应的全部业务模块均提供 REST 路径。
 2. **无 CLI 控制面**：所有配置通过文件 / 环境变量 / 设置 API 完成，服务只负责运行。
 3. **API 优先**：每个能力都有一条 REST 路径，MCP、兼容网关、Web 控制台都调用同一服务层。
 4. **单一事件漏斗**：所有状态变化产生一个事件，事件日志、SSE、Webhook 三者共享。
@@ -17,7 +17,7 @@
    Browser  ──────▶ │  /  /app.js  /styles.css  (include_str!) │
    MCP client ────▶ │  /mcp                JSON-RPC 2.0        │
    REST client ───▶ │  /api/v1/*            103 endpoints      │
-   allinssl client ▶│  /v1/{group}/{action}  compatibility     │
+   Legacy client ▶│  /v1/{group}/{action}  gateway        │
                     └──────────────────┬───────────────────────┘
                                        │ auth_middleware (Arc<Core>)
                     ┌──────────────────▼───────────────────────┐
@@ -77,7 +77,7 @@
 
 ## 数据模型
 
-`store.rs` 的 `Database` 镜像并扩展了 allinssl 的 15 张表：
+`store.rs` 的 `Database` 含 15 个核心集合：
 
 | 集合 | 对应原表 / 说明 |
 | --- | --- |

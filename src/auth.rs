@@ -77,7 +77,7 @@ pub fn touch(core: &Shared, token: &str) {
     });
 }
 
-/// allinssl-compatible open API signature:
+/// Legacy gateway open-API signature:
 /// `api_token = md5(timestamp + lower(md5(api_key)))`. ssld uses SHA-256 for
 /// both steps and also accepts a plain `X-API-Key` header equal to the key.
 pub fn check_api_signature(core: &Shared, token: &str, timestamp: &str) -> bool {

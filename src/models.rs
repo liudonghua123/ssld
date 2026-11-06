@@ -1,4 +1,4 @@
-//! Data model: a superset of every allinssl table, plus the event / webhook /
+//! Data model: the full persistence schema, plus the event / webhook /
 //! MCP additions that ssld introduces. Everything is serde-serialisable so the
 //! whole state can be snapshotted to disk without an ORM.
 use serde::{Deserialize, Serialize};

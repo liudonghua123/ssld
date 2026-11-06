@@ -1,4 +1,4 @@
-//! Complete REST surface. Every business function of allinssl is reachable
+//! Complete REST surface. Every business function is reachable
 //! here, plus events, webhooks, MCP, plugins and audit. A compatibility
 //! gateway for the original `/v1/{group}/{action}` form lives in `compat.rs`.
 use crate::error::{created, message, ok, AppError, Result};

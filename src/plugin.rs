@@ -1,4 +1,4 @@
-//! Two plugin systems, matching allinssl: module plugins (protocol 1, manifest
+//! Two plugin systems: module plugins (protocol 1, manifest
 //! with permissions / hooks / frontend injection) and deploy plugins
 //! (stdin/stdout executable protocol with dynamic typed parameters).
 use crate::error::{AppError, Result};

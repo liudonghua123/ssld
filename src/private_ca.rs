@@ -53,7 +53,7 @@ pub async fn create_ca(core: &Shared, cfg: CaConfig) -> Result<CaRecord> {
 
 /// SM2 signing / encryption dual certificates. Uses the openssl binary when
 /// available (RustCrypto has no maintained SM2 X.509 signer); the two PEM
-/// pairs are stored separately, mirroring allinssl's GM/T 0024 layout.
+/// pairs are stored separately, following the GM/T 0024 layout.
 fn sm2_dual(_core: &Shared, cn: &str, days: i64) -> Result<(String, String, String, String)> {
     let openssl = which("openssl").ok_or_else(|| AppError::bad_gateway(
         "SM2 dual certificates require the openssl binary with SM2 support (or use rsa / ecdsa)"))?;

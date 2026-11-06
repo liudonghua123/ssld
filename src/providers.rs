@@ -1,5 +1,5 @@
 //! Capability registry. Every provider, target, event, algorithm and node type
-//! that allinssl exposes is declared here as data, so the API, the UI, the MCP
+//! that ssld supports is declared here as data, so the API, the UI, the MCP
 //! tools and the adapters all read from one source of truth.
 use serde_json::{json, Value};
 

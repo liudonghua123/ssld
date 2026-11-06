@@ -134,7 +134,7 @@ fn send_mail(ch: &ReportChannel, subject: &str, body: &str) -> Result<Value> {
     Ok(json!({ "channel": ch.name, "smtp": host, "response": response.message().collect::<Vec<_>>().join("") }))
 }
 
-/// `report_types` accepts channel ids or channel kinds, matching allinssl's
+/// `report_types` accepts channel ids or channel kinds, supporting
 /// multi-account alarm lists.
 pub async fn notify_many(core: &Shared, report_types: &[String], subject: &str, body: &str, extra: &Value) -> Vec<Value> {
     let db = core.store.snapshot();

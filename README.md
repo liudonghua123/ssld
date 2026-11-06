@@ -1,36 +1,67 @@
 # ssld
 
-**SSL 证书全生命周期控制平面，用 Rust 完整重写 allinssl。**
+**A self-hosted SSL/TLS certificate lifecycle control plane, written in pure Rust.**
 
-仓库：<https://github.com/liudonghua123/ssld> · [English](README.en.md) · [MIT](LICENSE)
+ssld centralizes the full lifecycle of TLS certificates — ACME enrollment, DNS-01 validation, issuance, storage, deployment, renewal, monitoring and alerting — behind a single static binary with an embedded web console. It requires no external database and no runtime dependencies beyond the OS.
 
-ssld 对照 allinssl 的全部业务模块重新实现：ACME 签发、DNS-01、证书仓库、凭据与 EAB、ACME 账户、通知渠道、工作流编排、部署目标、监控告警、私有 CA、插件体系、系统设置与概览审计。在此之上补齐了三件事：开放的完整 REST API、面向 AI 助手的高层粗粒度 MCP 服务、以及可配置的 Webhook 事件系统。
+Repository: <https://github.com/liudonghua123/ssld> · [简体中文](readme-zh_CN.md) · [MIT License](LICENSE)
 
-按照需求，**不包含 allinssl 的命令行服务控制功能**（数字菜单、服务启停/重启、改端口、改密码、安全入口设置、卸载更新等）。配置全部走配置文件、环境变量或设置 API；停止进程请交给进程管理器（systemd / Docker / Supervisor）。
-
-| 指标 | 数值 |
+| Metric | Value |
 | --- | --- |
-| REST 端点 | 103 |
-| MCP 粗粒度工具 | 15 |
-| 兼容的 allinssl 原始 `/v1/{group}/{action}` 动作 | 71 |
-| DNS 服务商 / 主机凭据 / 部署目标 | 25 / 18 / 32 |
-| CA / 密钥算法 / 通知渠道 / 事件类型 | 9 / 6 / 5 / 44 |
-| 工作流节点类型 / 导出格式 | 12 / 5 |
-| 语言与依赖 | Rust 2021，运行时零外部数据库 |
+| REST endpoints | 103 (OpenAPI 3.1 index included) |
+| High-level MCP tools | 15 (JSON-RPC 2.0, streamable HTTP) |
+| Legacy `/v1/{group}/{action}` gateway actions | 71 |
+| DNS providers / host credentials / deploy targets | 25 / 18 / 32 |
+| CAs / key algorithms / notification channels / event types | 9 / 6 / 5 / 44 |
+| Workflow node types / export formats | 12 / 5 |
+| Runtime dependencies | None — JSON snapshot persistence, zero native libraries |
 
-![ssld 控制台](docs/screenshots/console-desktop.jpg)
+![ssld console](docs/screenshots/console-desktop.jpg)
 
 <details>
-<summary>平板与手机视图</summary>
+<summary>Tablet and phone views</summary>
 
-![平板](docs/screenshots/console-tablet.jpg)
-![手机](docs/screenshots/console-mobile.jpg)
+![Tablet](docs/screenshots/console-tablet.jpg)
+![Phone](docs/screenshots/console-mobile.jpg)
 
 </details>
 
 ---
 
-## 快速开始
+## Why ssld
+
+- **Single-binary operations.** The web console is compiled into the binary via `include_str!`; deployment is one executable plus a data directory.
+- **API-first.** Every capability is a REST endpoint. The MCP server, the webhook dispatcher and the web console all call the same service layer.
+- **AI-assistant ready.** A coarse-grained MCP (Model Context Protocol) server exposes fleet-level operations (`fleet_overview`, `renew_expiring`, …) so AI agents can manage certificates without learning the low-level API.
+- **Event-driven.** Every state change flows through one event funnel that feeds the audit log, an SSE stream and signed webhooks simultaneously.
+- **Zero external runtime.** No SQLite, no PostgreSQL, no native C libraries. State is an atomically written JSON snapshot; swapping in a database backend only touches `store.rs`.
+- **No CLI service-control surface.** Configuration lives in a JSON file, environment variables or the settings API. Process lifecycle (start/stop/restart) is delegated to your process manager — systemd, Docker, Supervisor, etc. Legacy CLI-control actions return `410 Gone`.
+
+---
+
+## Feature coverage
+
+| Domain | What is implemented |
+| --- | --- |
+| ACME v2 (RFC 8555) | Hand-written client: directory discovery, nonce management, JWS (ES256) request signing, account registration with optional External Account Binding (EAB), `newOrder`, authorization polling, `finalize`, certificate-chain download, and RFC 9773 ARI (Automated Renewal Information) renewal hints with `replaces` |
+| DNS-01 (RFC 8555 §8.4) | Native adapters for Cloudflare and acme-dns plus a generic webhook DNS provider; 20+ cloud vendors through a unified signed-HTTP layer (HMAC-SHA1 query signing, Alibaba TC3/HMAC-SHA256, AWS SigV4, Bearer, Basic, static API key); UDP TXT propagation verification (RFC 1035) against operator-configured authoritative nameservers, with CNAME delegation support |
+| Certificate vault | Import from PEM/DER/PFX/JKS, X.509 parsing (SAN, chain, fingerprints, algorithms), issuance preview, re-use of still-valid certificates, expiry scanning, ZIP/PEM/DER export, external PFX/JKS conversion via `openssl`/`keytool`, bulk renewal |
+| Deployment | 32 target kinds: localhost, SSH/SFTP, generic webhook, deploy plugins (stdin/stdout protocol), BT Panel, 1Panel, SafeLine, LeCDN, Tencent Cloud, Alibaba Cloud, Qiniu, Baidu Cloud, Huawei Cloud, Volcengine, Doge Cloud, RainYun and more; pre/post commands and idempotent skip when the target already holds the matching certificate |
+| Credentials | DNS and host credential vaults, EAB key pairs, ACME account management, secret masking in list endpoints, connectivity tests, remote site listing, key rotation |
+| Notifications | SMTP mail, generic webhook, DingTalk, Feishu (Lark), WeCom (WeChat Work); placeholder templating, DingTalk/Feishu signature authentication, multi-account alerting, test send |
+| Workflows | Nested node trees (`child_node` chaining, `condition_nodes` parallel branches), sequential/parallel/condition/result branches, node input/output wiring, per-node run logs, manual and cron-like scheduled runs, one-call pipeline builder |
+| Monitoring | HTTPS and SMTPS probes, remote certificate-chain parsing, expiry thresholds, error records, alert suppression windows, CSV/JSON bulk import with template |
+| Private CA | Three-tier hierarchy (Root → Intermediate → Leaf); RSA, ECDSA and SM2 (SM2 dual signing/encryption certificates via external `openssl`, GM/T 0024 layout); hierarchy constraints (root cannot sign leaves directly, leaf validity bounded by intermediate, guarded deletion) |
+| Plugins | Module plugins (protocol 1: `plugin.json`/`metadata.json` manifest scanning, enable/disable, action dispatch) and deploy plugins (stdin/stdout protocol) |
+| System | Overview with recommended actions, security audit, operation audit log, backup/restore, OpenAPI 3.1 index, legacy gateway, login lockout, captcha, secure-entry path, HMAC API signing |
+| Webhooks | Per-subscription event filters with `*` wildcards, HMAC-SHA256 signatures, custom headers and body templates, retries with exponential backoff, delivery ledger, test send, redelivery, statistics |
+| Web console | Single-page dynamic console; one `requestAnimationFrame` clock drives KPI count-ups, expiry-runway scan, pipeline pulses, health-ring sweeps and live SSE events; light/dark theme following the system, bilingual UI (en/zh), responsive down to mobile, honors `prefers-reduced-motion` |
+
+---
+
+## Quick start
+
+Requires Rust stable (edition 2021).
 
 ```bash
 git clone https://github.com/liudonghua123/ssld.git
@@ -39,9 +70,7 @@ cargo build --release
 ./target/release/ssld        # Windows: target\release\ssld.exe
 ```
 
-需要 Rust stable（edition 2021）。首次构建会编译依赖，之后 `cargo build --release` 即可。
-
-服务默认监听 `0.0.0.0:7979`，启动后终端会打印：
+The server listens on `0.0.0.0:7979` by default and prints:
 
 ```
   Console   http://0.0.0.0:7979/
@@ -51,101 +80,80 @@ cargo build --release
   State     data/state.json
 ```
 
-本地开箱即用：未设置 `SSLD_API_KEY` 且未显式开启 `SSLD_AUTH_REQUIRED` 时，控制台与 REST API 不强制鉴权。**部署到公网前必须**设置 `SSLD_API_KEY` 或 `SSLD_AUTH_REQUIRED=1`。
+Local mode works out of the box: with no `SSLD_API_KEY` and no `SSLD_AUTH_REQUIRED`, the console and REST API are unauthenticated. **Before exposing it to a network, set `SSLD_API_KEY` or `SSLD_AUTH_REQUIRED=1`.**
 
 ```bash
-# 生产示例：开启鉴权、改端口、指定数据目录
+# Production example: enable auth, change the port, relocate the data directory
 SSLD_API_KEY='change-me' SSLD_PORT=9443 SSLD_DATA_DIR=/var/lib/ssld ./target/release/ssld
 
-# 健康检查
+# Health check
 curl http://127.0.0.1:7979/api/v1/health
 
-# 直接在 MCP 上调用高层工具
+# Call a high-level MCP tool directly
 curl -s http://127.0.0.1:7979/mcp -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"fleet_overview","arguments":{}}}'
 ```
 
-启动参数只有 `--config` / `--port` / `--bind` / `--data-dir` / `--version` / `--help`，没有任何服务控制子命令。
+The only startup flags are `--config`, `--port`, `--bind`, `--data-dir`, `--version` and `--help`. There are no service-control subcommands.
 
 ---
 
-## 功能覆盖
+## Configuration
 
-| 域 | 实现内容 |
-| --- | --- |
-| ACME v2 | 自实现 directory / nonce / JWS(ES256) / 账户注册 / EAB / newOrder / DNS-01 / finalize / 证书下载 / RFC 9773 ARI 续期提示与 `replaces` |
-| DNS-01 | Cloudflare、acme-dns、Webhook DNS 原生适配；其余云厂商走统一签名 HTTP 层（HMAC-SHA1 查询签名、TC3、AWS SigV4、Bearer、Basic、API Key）；自定义 nameserver 的 UDP TXT 传播校验 |
-| 证书 | 导入、解析（SAN/链/指纹/算法）、预览、复用、过期扫描、ZIP/PEM/DER 导出、PFX/JKS 外部转换、批量续期 |
-| 部署 | localhost、SSH、Webhook、插件、宝塔/1Panel/SafeLine/LeCDN、腾讯云、阿里云、七牛、百度、华为、火山、Doge、RainYun 等 32 类目标；支持前置/后置命令与幂等跳过 |
-| 凭据 | DNS / 主机凭据、EAB、ACME 账户、脱敏展示、连通性测试、站点列表、密钥轮换 |
-| 通知 | 邮件、Webhook、钉钉、飞书、企业微信；占位符、DingTalk/Feishu 签名、多账号告警、测试发送 |
-| 工作流 | 嵌套节点树、顺序/并行分支、条件分支、执行结果分支、节点输入输出、执行历史与节点日志、手动与计划调度、一键生成证书流水线 |
-| 监控 | HTTPS / SMTPS 探测、证书链解析、过期阈值、异常记录、告警抑制、CSV/JSON 批量导入与模板 |
-| 私有 CA | Root → Intermediate → Leaf 三级；RSA / ECDSA / SM2（SM2 双证书经外部 openssl）；root 禁止直签 leaf、leaf 有效期不得超过中间 CA、删除约束 |
-| 插件 | module 插件（plugin.json / metadata.json 扫描、启用停用、动作与元数据）与 deploy 插件（stdin/stdout 协议） |
-| 系统 | 概览与推荐动作、安全审计、操作日志、备份恢复、OpenAPI 索引、兼容网关、登录锁定、验证码、安全入口、API 签名 |
-| Webhook | 事件过滤与通配符、HMAC-SHA256 签名、自定义 header 与 body 模板、重试与退避、投递台账、测试发送、重放、统计 |
-| 界面 | 单文件式动态控制台，单一 `requestAnimationFrame` 时钟驱动 KPI 计数、runway 扫描、流水线脉冲、健康环扫过、SSE 实时事件流；浅/深色主题跟随系统、双语、响应式、尊重 `prefers-reduced-motion` |
+The config file defaults to `config/ssld.json` (built-in defaults apply when absent). See [`config/ssld.example.json`](config/ssld.example.json). Environment variables take precedence:
 
----
-
-## 配置
-
-配置文件默认为 `config/ssld.json`（不存在时用内置默认值），完整示例见 [`config/ssld.example.json`](config/ssld.example.json)。环境变量优先级最高：
-
-| 变量 | 说明 | 默认 |
+| Variable | Purpose | Default |
 | --- | --- | --- |
-| `SSLD_CONFIG` | 配置文件路径 | `config/ssld.json` |
-| `SSLD_BIND` / `SSLD_PORT` | 监听地址 / 端口 | `0.0.0.0` / `7979` |
-| `SSLD_DATA_DIR` | 状态目录 | `data` |
-| `SSLD_API_KEY` | 开放 API 静态密钥，设置后自动强制鉴权 | 空 |
-| `SSLD_AUTH_REQUIRED` | 设为 `1` 强制鉴权 | 关 |
-| `SSLD_ADMIN_USER` / `SSLD_ADMIN_PASSWORD` | 控制台管理员 | `admin` / `ssld` |
-| `SSLD_SECURE_ENTRY` | 安全入口路径 | `/`（关闭） |
-| `SSLD_HTTPS` | 启用 HTTPS（配合配置里的 `tls_cert` / `tls_key`） | 关 |
-| `SSLD_WEBHOOK_SECRET` / `SSLD_WEBHOOK_OFF` | 默认 Webhook 签名密钥 / 关闭分发 | 空 / 开 |
-| `SSLD_MCP_PATH` | MCP 端点路径 | `/mcp` |
-| `SSLD_TICK_SECONDS` / `SSLD_SCHEDULER_OFF` | 调度 tick / 关闭调度器 | `10` / 开 |
+| `SSLD_CONFIG` | Config file path | `config/ssld.json` |
+| `SSLD_BIND` / `SSLD_PORT` | Listen address / port | `0.0.0.0` / `7979` |
+| `SSLD_DATA_DIR` | State directory | `data` |
+| `SSLD_API_KEY` | Static API key; setting it forces authentication | empty |
+| `SSLD_AUTH_REQUIRED` | Set to `1` to force authentication | off |
+| `SSLD_ADMIN_USER` / `SSLD_ADMIN_PASSWORD` | Console admin | `admin` / `ssld` |
+| `SSLD_SECURE_ENTRY` | Secure entry path | `/` (disabled) |
+| `SSLD_HTTPS` | Serve HTTPS with `tls_cert` / `tls_key` from config | off |
+| `SSLD_WEBHOOK_SECRET` / `SSLD_WEBHOOK_OFF` | Default signing secret / disable dispatch | empty / on |
+| `SSLD_MCP_PATH` | MCP endpoint path | `/mcp` |
+| `SSLD_TICK_SECONDS` / `SSLD_SCHEDULER_OFF` | Scheduler tick / disable scheduler | `10` / on |
 
-运行时也可以通过 `PUT /api/v1/settings` 修改设置，无需重启。`config/ssld.json` 与 `data/` 下的状态、日志、证书私钥均已被 `.gitignore` 排除，请从示例文件复制后本地填写，不要提交真实凭据。
+Settings can also be changed at runtime through `PUT /api/v1/settings`, with no restart. `config/ssld.json` and everything under `data/` (state, logs, certificate private keys) are ignored by Git. Copy the example file locally and never commit real credentials.
 
-### 鉴权方式
+### Authentication
 
-- **本地模式**（默认）：无 API key 且不强制鉴权，开箱即用。
-- **Bearer / Cookie**：`POST /api/v1/auth/login` 返回 token 并下发 `ssld_session` Cookie。
-- **API 签名**：兼容层的 `api_token` + `timestamp` 支持两种方式：
-  `sha256(timestamp + sha256(api_key))`，或 `base64(HMAC-SHA256(api_key, timestamp + "." + sha256(api_key)))`。
+- **Local mode** (default): no API key and auth not forced, so it just works on a trusted host.
+- **Bearer / Cookie session**: `POST /api/v1/auth/login` returns a token and sets the `ssld_session` cookie.
+- **HMAC API signing** (gateway requests): pass `api_token` + `timestamp`, computed as either `sha256(timestamp + sha256(api_key))` or `base64(HMAC-SHA256(api_key, timestamp + "." + sha256(api_key)))`, with a 300-second validity window and constant-time comparison.
 
 ---
 
-## 文档
+## Documentation
 
-| 文档 | 内容 |
+| Document | Contents |
 | --- | --- |
-| [docs/API.md](docs/API.md) | 103 个 REST 端点分组参考、统一响应封装、兼容性网关、鉴权 |
-| [docs/MCP.md](docs/MCP.md) | 15 个高层 MCP 工具、资源、JSON-RPC 调用示例与接入方式 |
-| [docs/WEBHOOKS.md](docs/WEBHOOKS.md) | 订阅字段、事件与通配符、签名校验、模板、重试、重放与统计 |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 模块地图、数据模型、ACME 流程、工作流与调度、存储与安全边界 |
-| [README.en.md](README.en.md) | English README |
-| [tests/smoke.js](tests/smoke.js) | 端到端冒烟测试脚本 |
+| [docs/API.md](docs/API.md) | All 103 REST endpoints by group, response envelope, gateway, auth |
+| [docs/MCP.md](docs/MCP.md) | 15 high-level MCP tools, resources, JSON-RPC examples, client setup |
+| [docs/WEBHOOKS.md](docs/WEBHOOKS.md) | Subscription fields, events and wildcards, signature verification, templates, retries, redelivery, stats |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Module map, data model, ACME flow, workflows and scheduling, storage, security boundary |
+| [readme-zh_CN.md](readme-zh_CN.md) | 简体中文说明 |
+| [tests/smoke.js](tests/smoke.js) | End-to-end smoke test (38 checks) |
 
 ---
 
-## 验证结果
+## Verification
 
-在 Windows / Rust stable / MSVC 上完成：
+Completed on Windows / Rust stable / MSVC:
 
-- `cargo check`、`cargo build`：**0 error、0 warning**。
-- 前端设计检查（仓库外的设计评审脚本，不随源码分发）：静态规范检查 **0 FAIL**；1440 / 768 / 390 三档视口检查 **0 FAIL、0 WARN**。
-- 端到端冒烟测试 `node tests/smoke.js [port]`：**38 / 38 通过**（在全新空状态与使用示例配置下运行），覆盖服务与静态资源、私有 CA 三级与约束、证书导入与 SAN、ZIP 导出、工作流构建与执行、监控批量导入、兼容网关、CLI 控制动作返回 410、Webhook 与事件词表、审计与备份恢复、MCP 工具列表及 5 个高层工具。
-- Webhook 专项：签名（与 `crypto.createHmac` 逐字节比对 VALID）、事件过滤（不匹配事件不投递）、自定义 header、模板渲染、投递台账、测试发送、重放、统计、SSE 实时广播全部通过。
+- `cargo check`, `cargo build`: **0 errors, 0 warnings**.
+- Front-end design gates (external design-review scripts, not shipped in this repo): static lint **0 FAIL**; viewport checks at 1440 / 768 / 390 **0 FAIL, 0 WARN**.
+- `node tests/smoke.js [port]`: **38 / 38 passing** on a fresh empty state using the example config, covering service and static assets, three-tier private CA and its constraints, certificate import and SANs, ZIP export, pipeline build and execution, monitor bulk import, gateway compatibility, `410 Gone` for CLI-control actions, webhooks and the event vocabulary, audit, backup/restore, the MCP tool list and 5 high-level tools.
+- Webhook suite: signatures byte-compared against `crypto.createHmac` (VALID), event filtering, custom headers, template rendering, delivery ledger, test send, redelivery, statistics and live SSE broadcast all passed.
 
-### 已知边界
+### Known boundaries
 
-- 状态持久化采用单文件 JSON 原子快照（无 SQLite / 外部数据库），适合单机中小规模；超大规模部署应替换为数据库后端。
-- `openssl` / `keytool` 仅在 PFX / JKS / SM2 双证书转换时按需调用，主体逻辑为纯 Rust。
-- ACME 只提供 DNS-01（与 allinssl 一致），不支持 HTTP-01 与自定义 CSR。
-- 申请真实证书需要有效的 DNS 凭据与网络可达的 ACME CA；冒烟测试使用私有 CA 签发的证书，不触发真实 ACME 下单。
+- State is one atomically written JSON snapshot rather than a database. This suits a single node and moderate fleet sizes; very large or multi-node deployments should swap in a database backend (the seam is `store.rs` only).
+- `openssl` / `keytool` are invoked on demand only for PFX / JKS / SM2 dual-certificate conversion; the core is pure Rust.
+- Only the DNS-01 challenge is implemented; HTTP-01, TLS-ALPN-01 and custom CSR flows are out of scope.
+- Issuing certificates from public CAs requires valid DNS credentials and network access to the ACME directory. The smoke test uses private-CA-issued certificates and never places a real ACME order.
 
 ---
 

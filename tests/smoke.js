@@ -130,7 +130,7 @@ const unwrap = r => r.json?.data;
 
   console.log('\n[compatibility gateway]');
   const compat = await req('POST', '/v1/overview/get_overviews', {});
-  check('allinssl /v1/{group}/{action}', ok(compat), `health=${unwrap(compat)?.health_score}`);
+  check('legacy /v1/{group}/{action}', ok(compat), `health=${unwrap(compat)?.health_score}`);
   const compatForm = await req('POST', '/v1/cert/get_list', 'limit=5&search=', { form: true });
   check('form-urlencoded accepted', ok(compatForm));
   const shutdown = await req('POST', '/v1/setting/shutdown', {});
