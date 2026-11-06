@@ -1,0 +1,16 @@
+/target
+/data
+/.smoke-data
+/.verify-data
+*.backup.json
+*.corrupt.*.json
+.DS_Store
+
+# 运行时配置与密钥材料（config/ssld.example.json 仍纳入版本管理）
+/config/ssld.json
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.jks
