@@ -1,0 +1,8 @@
+
+  ssld 1.0.0  ·  certificate lifecycle control plane
+  Console   http://0.0.0.0:7979/
+  REST API  http://0.0.0.0:7979/api/v1/health   (103 endpoints)
+  MCP       http://0.0.0.0:7979/mcp   (15 coarse tools)
+  Events    http://0.0.0.0:7979/api/v1/events/stream
+  State     C:/Users/admin/WorkBuddy/2026-11-06-06-50-57/ssld/.shots-data\state.json
+

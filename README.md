@@ -16,13 +16,61 @@ Repository: <https://github.com/liudonghua123/ssld> · [简体中文](readme-zh_
 | Workflow node types / export formats | 12 / 5 |
 | Runtime dependencies | None — JSON snapshot persistence, zero native libraries |
 
-![ssld console](docs/screenshots/console-desktop.jpg)
+## Console tour
+
+The overview dashboard — certificate fleet KPIs, expiry runway, fleet health score, lifecycle pipeline and the live event feed, all driven by a single animation clock:
+
+![ssld console — overview](docs/screenshots/console-desktop.jpg)
 
 <details>
-<summary>Tablet and phone views</summary>
+<summary>More screens (click to expand)</summary>
 
-![Tablet](docs/screenshots/console-tablet.jpg)
-![Phone](docs/screenshots/console-mobile.jpg)
+**Certificates** — the vault: every certificate parsed (SANs, issuer, chain, fingerprints), ordered by how soon it expires, with export / inspect / delete actions:
+
+![Certificates](docs/screenshots/certificates.jpg)
+
+**Workflows** — reusable issue-deploy-notify pipelines with nested node trees, run history and per-node logs:
+
+![Workflows](docs/screenshots/workflows.jpg)
+
+**Monitors** — HTTPS / SMTPS probes with expiry thresholds, error records and alert suppression:
+
+![Monitors](docs/screenshots/monitors.jpg)
+
+**Webhooks** — event subscriptions with wildcards, HMAC-SHA256 signing, retries, delivery ledger and replay:
+
+![Webhooks](docs/screenshots/webhooks.jpg)
+
+**Event stream** — every lifecycle event in order with its payload, live via server-sent events; the badge cloud is the full event vocabulary:
+
+![Event stream](docs/screenshots/events.jpg)
+
+**Credentials** — DNS and host provider vaults (25 DNS providers, 32 deploy targets), connectivity tests and secret masking:
+
+![Credentials](docs/screenshots/credentials.jpg)
+
+**Private CA** — Root → Intermediate → Leaf hierarchy with RSA / ECDSA / SM2, hierarchy constraints and guarded deletion:
+
+![Private CA](docs/screenshots/privateca.jpg)
+
+**API & MCP** — the complete REST surface, the 15 coarse-grained MCP tools, and copy-paste client configuration for AI agents:
+
+![API & MCP](docs/screenshots/api.jpg)
+
+**Plugins** — module plugins (manifest scanning) and deploy plugins (stdin/stdout protocol):
+
+![Plugins](docs/screenshots/plugins.jpg)
+
+**Settings** — runtime preferences editable without a restart, notification channels and the open API key:
+
+![Settings](docs/screenshots/settings.jpg)
+
+**Responsive** — the same console on tablet and phone:
+
+<p>
+  <img src="docs/screenshots/console-tablet.jpg" width="49%" alt="Tablet view">
+  <img src="docs/screenshots/console-mobile.jpg" width="40%" alt="Phone view">
+</p>
 
 </details>
 

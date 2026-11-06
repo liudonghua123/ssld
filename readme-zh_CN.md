@@ -16,13 +16,61 @@ ssld 将 TLS 证书的完整生命周期 —— ACME 注册、DNS-01 验证、�
 | 工作流节点类型 / 导出格式 | 12 / 5 |
 | 运行时依赖 | 无 —— JSON 快照持久化，零原生库 |
 
-![ssld 控制台](docs/screenshots/console-desktop.jpg)
+## 控制台一览
+
+概览仪表盘 —— 证书舰队 KPI、到期跑道、舰队健康分、生命周期流水线与实时事件流，全部由单一动画时钟驱动：
+
+![ssld 控制台 · 概览](docs/screenshots/console-desktop.jpg)
 
 <details>
-<summary>平板与手机视图</summary>
+<summary>更多页面（点击展开）</summary>
 
-![平板](docs/screenshots/console-tablet.jpg)
-![手机](docs/screenshots/console-mobile.jpg)
+**证书仓库** —— 全部证书解析入库（SAN、签发者、证书链、指纹），按到期时间排序，支持导出 / 检视 / 删除：
+
+![证书仓库](docs/screenshots/certificates.jpg)
+
+**工作流** —— 可复用的「签发-部署-通知」流水线，嵌套节点树、运行历史与逐节点日志：
+
+![工作流](docs/screenshots/workflows.jpg)
+
+**监控** —— HTTPS / SMTPS 探测、过期阈值、异常记录与告警抑制：
+
+![监控](docs/screenshots/monitors.jpg)
+
+**Webhook** —— 事件订阅，支持通配符、HMAC-SHA256 签名、重试、投递台账与重放：
+
+![Webhook](docs/screenshots/webhooks.jpg)
+
+**事件流** —— 全部生命周期事件按序展示并附带载荷，经 SSE 实时推送；徽章云为完整事件词表：
+
+![事件流](docs/screenshots/events.jpg)
+
+**凭据** —— DNS 与主机凭据库（25 家 DNS 服务商、32 类部署目标）、连通性测试与密钥脱敏：
+
+![凭据](docs/screenshots/credentials.jpg)
+
+**私有 CA** —— Root → Intermediate → Leaf 三级层级，支持 RSA / ECDSA / SM2，带层级约束与删除保护：
+
+![私有 CA](docs/screenshots/privateca.jpg)
+
+**API & MCP** —— 完整 REST 端点面、15 个粗粒度 MCP 工具，以及可直接复制的 AI 智能体接入配置：
+
+![API & MCP](docs/screenshots/api.jpg)
+
+**插件** —— 模块插件（清单扫描）与部署插件（stdin/stdout 协议）：
+
+![插件](docs/screenshots/plugins.jpg)
+
+**设置** —— 运行时偏好免重启修改、通知渠道与开放 API 密钥：
+
+![设置](docs/screenshots/settings.jpg)
+
+**响应式** —— 同一控制台在平板与手机上：
+
+<p>
+  <img src="docs/screenshots/console-tablet.jpg" width="49%" alt="平板视图">
+  <img src="docs/screenshots/console-mobile.jpg" width="40%" alt="手机视图">
+</p>
 
 </details>
 

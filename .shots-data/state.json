@@ -1,0 +1,839 @@
+{
+  "version": 1,
+  "settings": {
+    "api_key": "",
+    "ari_enabled": "1",
+    "default_algorithm": "RSA2048",
+    "default_ca": "letsencrypt",
+    "expiry_notified:1:cert.expiring:2026-11-07T01:26:07+00:00": "2026-11-06T01:33:05.716888200+00:00",
+    "expiry_notified:2:cert.expiring:2026-11-07T01:26:13+00:00": "2026-11-06T01:33:05.720590200+00:00",
+    "https": "0",
+    "language": "en",
+    "log_path": "data/ssld.log",
+    "mcp_enabled": "1",
+    "plugin_dir": "plugins",
+    "port": "7979",
+    "renew_before_days": "30",
+    "secure": "/",
+    "session_key": "ee602801-afaf-4c4f-a8b8-ee311b5a3da9",
+    "theme": "system",
+    "timeout": "86400",
+    "webhook_enabled": "1",
+    "workflow_log_path": "data/workflow-logs"
+  },
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "63e93ac92f1c4a14515a3ab0035565ac378a71c01a6d6bffc4f756cc32db0814",
+      "salt": "ssld-static-salt"
+    }
+  ],
+  "sessions": [],
+  "access_types": [
+    {
+      "id": 1,
+      "provider": "aliyun",
+      "kind": "dns"
+    },
+    {
+      "id": 2,
+      "provider": "tencentcloud",
+      "kind": "dns"
+    },
+    {
+      "id": 3,
+      "provider": "rainyun",
+      "kind": "dns"
+    },
+    {
+      "id": 4,
+      "provider": "cloudflare",
+      "kind": "dns"
+    },
+    {
+      "id": 5,
+      "provider": "huaweicloud",
+      "kind": "dns"
+    },
+    {
+      "id": 6,
+      "provider": "baidu",
+      "kind": "dns"
+    },
+    {
+      "id": 7,
+      "provider": "westcn",
+      "kind": "dns"
+    },
+    {
+      "id": 8,
+      "provider": "volcengine",
+      "kind": "dns"
+    },
+    {
+      "id": 9,
+      "provider": "godaddy",
+      "kind": "dns"
+    },
+    {
+      "id": 10,
+      "provider": "namecheap",
+      "kind": "dns"
+    },
+    {
+      "id": 11,
+      "provider": "ns1",
+      "kind": "dns"
+    },
+    {
+      "id": 12,
+      "provider": "cloudns",
+      "kind": "dns"
+    },
+    {
+      "id": 13,
+      "provider": "aws",
+      "kind": "dns"
+    },
+    {
+      "id": 14,
+      "provider": "azure",
+      "kind": "dns"
+    },
+    {
+      "id": 15,
+      "provider": "jdcloud",
+      "kind": "dns"
+    },
+    {
+      "id": 16,
+      "provider": "gcore",
+      "kind": "dns"
+    },
+    {
+      "id": 17,
+      "provider": "bunny",
+      "kind": "dns"
+    },
+    {
+      "id": 18,
+      "provider": "namedotcom",
+      "kind": "dns"
+    },
+    {
+      "id": 19,
+      "provider": "namesilo",
+      "kind": "dns"
+    },
+    {
+      "id": 20,
+      "provider": "constellix",
+      "kind": "dns"
+    },
+    {
+      "id": 21,
+      "provider": "spaceship",
+      "kind": "dns"
+    },
+    {
+      "id": 22,
+      "provider": "webhook",
+      "kind": "dns"
+    },
+    {
+      "id": 23,
+      "provider": "btdomain",
+      "kind": "dns"
+    },
+    {
+      "id": 24,
+      "provider": "edgeone",
+      "kind": "dns"
+    },
+    {
+      "id": 25,
+      "provider": "acmedns",
+      "kind": "dns"
+    },
+    {
+      "id": 26,
+      "provider": "aliyun",
+      "kind": "host"
+    },
+    {
+      "id": 27,
+      "provider": "tencentcloud",
+      "kind": "host"
+    },
+    {
+      "id": 28,
+      "provider": "ssh",
+      "kind": "host"
+    },
+    {
+      "id": 29,
+      "provider": "btpanel",
+      "kind": "host"
+    },
+    {
+      "id": 30,
+      "provider": "1panel",
+      "kind": "host"
+    },
+    {
+      "id": 31,
+      "provider": "cloudflare",
+      "kind": "host"
+    },
+    {
+      "id": 32,
+      "provider": "rainyun",
+      "kind": "host"
+    },
+    {
+      "id": 33,
+      "provider": "huaweicloud",
+      "kind": "host"
+    },
+    {
+      "id": 34,
+      "provider": "baidu",
+      "kind": "host"
+    },
+    {
+      "id": 35,
+      "provider": "btwaf",
+      "kind": "host"
+    },
+    {
+      "id": 36,
+      "provider": "doge",
+      "kind": "host"
+    },
+    {
+      "id": 37,
+      "provider": "plugin",
+      "kind": "host"
+    },
+    {
+      "id": 38,
+      "provider": "safeline",
+      "kind": "host"
+    },
+    {
+      "id": 39,
+      "provider": "qiniu",
+      "kind": "host"
+    },
+    {
+      "id": 40,
+      "provider": "volcengine",
+      "kind": "host"
+    },
+    {
+      "id": 41,
+      "provider": "lecdn",
+      "kind": "host"
+    },
+    {
+      "id": 42,
+      "provider": "webhook",
+      "kind": "host"
+    },
+    {
+      "id": 43,
+      "provider": "localhost",
+      "kind": "host"
+    }
+  ],
+  "accesses": [
+    {
+      "id": 1,
+      "name": "cloudflare-main",
+      "kind": "dns",
+      "provider": "cloudflare",
+      "config": {
+        "api_token": "cf-demo-token-xxxxxxxxxxxxxxxx"
+      },
+      "created_at": "2026-11-06T01:30:41.983491600+00:00",
+      "updated_at": "2026-11-06T01:30:41.983491600+00:00"
+    },
+    {
+      "id": 2,
+      "name": "prod-web-01",
+      "kind": "host",
+      "provider": "ssh",
+      "config": {
+        "host": "10.0.12.21",
+        "port": 22,
+        "username": "deploy"
+      },
+      "created_at": "2026-11-06T01:30:42.019951900+00:00",
+      "updated_at": "2026-11-06T01:30:42.019951900+00:00"
+    }
+  ],
+  "certs": [
+    {
+      "id": 1,
+      "source": "upload",
+      "sha256": "cfd70331912628df2bc4ea3b1784da0e5c3b662a1d7c053358f6d63a4de69dfc",
+      "history_id": "",
+      "key": "\n-----BEGIN PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgKGnFaO+YR0HdbWFM\nONoqNTQq4yfy5vVaqyCPlrjJlouhRANCAARgiAMwUENskjZcY5bkts9Sz+b+F0tC\nLfrYOaSrSkm94kZ613deAC8hIJs+/7ksw81Ked+72pJfRVjC5hARZ23F\n-----END PRIVATE KEY-----\n",
+      "cert": "-----BEGIN CERTIFICATE-----\nMIIBiTCCAS6gAwIBAgIUYPzY07IHRl4h3OppNoX7tWPw090wCgYIKoZIzj0EAwIw\nODEgMB4GA1UEAwwXc3NsZCBJbnRlcm1lZGlhdGUgQ0EgMDExCTAHBgNVBAoMADEJ\nMAcGA1UEBgwAMB4XDTI2MTEwNjAxMjYwN1oXDTI2MTEwNzAxMjYwN1owJTEjMCEG\nA1UEAwwadmF1bHQuaW50ZXJuYWwuZXhhbXBsZS5vcmcwWTATBgcqhkjOPQIBBggq\nhkjOPQMBBwNCAARgiAMwUENskjZcY5bkts9Sz+b+F0tCLfrYOaSrSkm94kZ613de\nAC8hIJs+/7ksw81Ked+72pJfRVjC5hARZ23FoykwJzAlBgNVHREEHjAcghp2YXVs\ndC5pbnRlcm5hbC5leGFtcGxlLm9yZzAKBggqhkjOPQQDAgNJADBGAiEAvoMifMfl\npiuXoOE/W/drKbTQrMQqywe5psPEIcaagioCIQD3vXGtJl2O0P5XK4iCLZvqM9ho\nYYkyxWkEysHz5mVm3A==\n-----END CERTIFICATE-----\n",
+      "issuer_cert": "",
+      "domains": [
+        "vault.internal.example.org"
+      ],
+      "created_at": "2026-11-06T01:32:34.128925700+00:00",
+      "updated_at": "2026-11-06T01:32:34.128925700+00:00",
+      "issuer": "ssld Intermediate CA 01",
+      "start_time": "2026-11-06T01:26:07+00:00",
+      "end_time": "2026-11-07T01:26:07+00:00",
+      "end_day": 0,
+      "workflow_id": 0,
+      "signature_algorithm": "1.2.840.10045.4.3.2",
+      "key_algorithm": "ECDSA",
+      "serial": "60fcd8d3b207465e21dcea693685fbb563f0d3dd"
+    },
+    {
+      "id": 2,
+      "source": "upload",
+      "sha256": "2695881f2c654d9f258e470005577be787b177700e30d2fb57e2903a5ec5dccb",
+      "history_id": "",
+      "key": "\n-----BEGIN PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgxGuwvDplvkc1D5/O\nNuCjiJKNSFccxfcGnI6DmmEP0M2hRANCAARvWMrjrIoOvt8iQgCF+ima2G8cszjr\nfc5UAWkBc97+micScL341FfpwzrT6bgu2JnTIdeE+9FZFAZyilO8/rRE\n-----END PRIVATE KEY-----\n",
+      "cert": "-----BEGIN CERTIFICATE-----\nMIIBjTCCATKgAwIBAgIUXF29WNBAJEiQojFCw4oucaOOSe0wCgYIKoZIzj0EAwIw\nODEgMB4GA1UEAwwXc3NsZCBJbnRlcm1lZGlhdGUgQ0EgMDExCTAHBgNVBAoMADEJ\nMAcGA1UEBgwAMB4XDTI2MTEwNjAxMjYxM1oXDTI2MTEwNzAxMjYxM1owJzElMCMG\nA1UEAwwcZ3JhZmFuYS5pbnRlcm5hbC5leGFtcGxlLm9yZzBZMBMGByqGSM49AgEG\nCCqGSM49AwEHA0IABG9YyuOsig6+3yJCAIX6KZrYbxyzOOt9zlQBaQFz3v6aJxJw\nvfjUV+nDOtPpuC7YmdMh14T70VkUBnKKU7z+tESjKzApMCcGA1UdEQQgMB6CHGdy\nYWZhbmEuaW50ZXJuYWwuZXhhbXBsZS5vcmcwCgYIKoZIzj0EAwIDSQAwRgIhANIH\nWIqz0GPPYMI56y+T8+VIlWqaIZvOi46y8I+TaL4kAiEAkg6fgFonvDIpoI/tPPSA\noNQ0Gfk3LvJoK72JNi3jxck=\n-----END CERTIFICATE-----\n",
+      "issuer_cert": "",
+      "domains": [
+        "grafana.internal.example.org"
+      ],
+      "created_at": "2026-11-06T01:32:34.135928700+00:00",
+      "updated_at": "2026-11-06T01:32:34.135928700+00:00",
+      "issuer": "ssld Intermediate CA 01",
+      "start_time": "2026-11-06T01:26:13+00:00",
+      "end_time": "2026-11-07T01:26:13+00:00",
+      "end_day": 0,
+      "workflow_id": 0,
+      "signature_algorithm": "1.2.840.10045.4.3.2",
+      "key_algorithm": "ECDSA",
+      "serial": "5c5dbd58d040244890a23142c38a2e71a38e49ed"
+    }
+  ],
+  "channels": [
+    {
+      "id": 1,
+      "name": "ops-email",
+      "kind": "",
+      "config": {
+        "from": "ops@example.org",
+        "password": "demo",
+        "smtp_host": "smtp.example.org",
+        "smtp_port": 465,
+        "to": "oncall@example.org",
+        "username": "ops@example.org"
+      },
+      "created_at": "2026-11-06T01:31:34.470006500+00:00",
+      "updated_at": "2026-11-06T01:31:34.470023200+00:00"
+    }
+  ],
+  "workflows": [
+    {
+      "id": 1,
+      "name": "issue-and-deploy-example-org",
+      "content": {
+        "child_node": {
+          "child_node": {
+            "child_node": {
+              "child_node": {
+                "child_node": null,
+                "condition_nodes": [],
+                "config": {},
+                "id": "ff295406-f188-480d-b3e9-398b93d26981",
+                "inputs": [],
+                "name": "End",
+                "type": "end",
+                "validated": true
+              },
+              "condition_nodes": [],
+              "config": {
+                "body": "Certificate workflow finished.",
+                "provider": "",
+                "subject": "ssld certificate workflow"
+              },
+              "id": "48da5e69-b818-4edb-9ab1-58aab2079d43",
+              "inputs": [],
+              "name": "Notify result",
+              "type": "notify",
+              "validated": true
+            },
+            "condition_nodes": [],
+            "config": {
+              "domain": "*.example.org",
+              "provider": "localhost",
+              "provider_id": 2,
+              "skip": 1
+            },
+            "id": "898cd94c-69c2-4680-a3ce-2688c4282ff1",
+            "inputs": [
+              {
+                "from_node_id": "apply",
+                "name": "certificate"
+              }
+            ],
+            "name": "Deploy certificate",
+            "type": "deploy",
+            "validated": true
+          },
+          "condition_nodes": [],
+          "config": {
+            "ca": "letsencrypt",
+            "domains": "*.example.org,example.org",
+            "provider_id": 0
+          },
+          "id": "apply",
+          "inputs": [],
+          "name": "Apply certificate",
+          "type": "apply",
+          "validated": true
+        },
+        "condition_nodes": [],
+        "config": {
+          "exec_time": {
+            "hour": 3,
+            "minute": 0,
+            "type": "day"
+          },
+          "exec_type": "auto"
+        },
+        "id": "54baacd1-0731-4c68-b17a-563caa1369d7",
+        "inputs": [],
+        "name": "issue-and-deploy-example-org",
+        "type": "start",
+        "validated": true
+      },
+      "cron": "",
+      "created_at": "2026-11-06T01:31:24.932168900+00:00",
+      "updated_at": "2026-11-06T01:31:24.932168900+00:00",
+      "active": true,
+      "exec_type": "auto",
+      "exec_time": {
+        "type": "day",
+        "month": 1,
+        "week": 1,
+        "hour": 3,
+        "minute": 0
+      },
+      "last_run_status": "fail",
+      "last_run_time": "2026-11-06T01:32:40.426887400+00:00"
+    }
+  ],
+  "histories": [
+    {
+      "id": "f9bdc908-a62e-4ecf-a647-affb2fdc76ec",
+      "workflow_id": 1,
+      "workflow_name": "issue-and-deploy-example-org",
+      "status": "fail",
+      "exec_type": "manual",
+      "created_at": "2026-11-06T01:32:40.409844+00:00",
+      "end_time": "2026-11-06T01:32:40.426887400+00:00",
+      "nodes": [
+        {
+          "node_id": "54baacd1-0731-4c68-b17a-563caa1369d7",
+          "node_type": "start",
+          "name": "issue-and-deploy-example-org",
+          "status": "success",
+          "message": "",
+          "started_at": "2026-11-06T01:32:40.413631800+00:00",
+          "finished_at": "2026-11-06T01:32:40.413659100+00:00"
+        },
+        {
+          "node_id": "apply",
+          "node_type": "apply",
+          "name": "Apply certificate",
+          "status": "fail",
+          "message": "contact email is required for ACME registration",
+          "started_at": "2026-11-06T01:32:40.420708700+00:00",
+          "finished_at": "2026-11-06T01:32:40.421097600+00:00"
+        }
+      ],
+      "logs": [
+        "[01:32:40] start workflow issue-and-deploy-example-org (1)",
+        "[01:32:40] issue-and-deploy-example-org [start] 54baacd1-0731-4c68-b17a-563caa1369d7 -> success: ",
+        "[01:32:40] Apply certificate [apply] apply -> fail: contact email is required for ACME registration",
+        "[01:32:40] fatal: contact email is required for ACME registration",
+        "[01:32:40] finished: fail"
+      ]
+    }
+  ],
+  "workflow_deploys": [],
+  "acme_accounts": [],
+  "eabs": [],
+  "monitors": [
+    {
+      "id": 1,
+      "name": "api.example.org",
+      "target": "https://api.example.org",
+      "monitor_type": "https",
+      "report_types": [],
+      "active": false,
+      "info": null,
+      "last_time": "",
+      "except_end_time": "",
+      "updated_at": "2026-11-06T01:30:47.850344300+00:00",
+      "created_at": "2026-11-06T01:30:47.850344300+00:00",
+      "cycle": 1,
+      "repeat_send_gap": 1,
+      "advance_day": 30,
+      "valid": 0,
+      "error_streak": 0
+    },
+    {
+      "id": 2,
+      "name": "mail.example.org",
+      "target": "smtps://mail.example.org:465",
+      "monitor_type": "https",
+      "report_types": [],
+      "active": false,
+      "info": null,
+      "last_time": "",
+      "except_end_time": "",
+      "updated_at": "2026-11-06T01:30:47.906237500+00:00",
+      "created_at": "2026-11-06T01:30:47.906237500+00:00",
+      "cycle": 1,
+      "repeat_send_gap": 1,
+      "advance_day": 30,
+      "valid": 0,
+      "error_streak": 0
+    }
+  ],
+  "err_records": [],
+  "cas": [
+    {
+      "id": 1,
+      "root_id": 0,
+      "name": "",
+      "cn": "ssld Root CA",
+      "o": "",
+      "c": "",
+      "cert": "-----BEGIN CERTIFICATE-----\r\nMIIBpzCCAU6gAwIBAgIVAL5FSTx47VIONAOvHCKuAlq1vs5BMAoGCCqGSM49BAMC\r\nMC0xFTATBgNVBAMMDHNzbGQgUm9vdCBDQTEJMAcGA1UECgwAMQkwBwYDVQQGDAAw\r\nHhcNMjYxMTA2MDEyNTU3WhcNMzYxMTAzMDEyNTU3WjAtMRUwEwYDVQQDDAxzc2xk\r\nIFJvb3QgQ0ExCTAHBgNVBAoMADEJMAcGA1UEBgwAMFkwEwYHKoZIzj0CAQYIKoZI\r\nzj0DAQcDQgAEWWu8gZ4nga/dBjMru5bpTkIHfjU8+0yvtnENb0aoDNwgaCndQX5N\r\n6WkJ02xW+lWSxQZD0svlKZqbPTBGUMlUo6NLMEkwFwYDVR0RBBAwDoIMc3NsZCBS\r\nb290IENBMB0GA1UdDgQWBBS+RUk8eO1SDjQDrxwirgJatb7OQTAPBgNVHRMBAf8E\r\nBTADAQH/MAoGCCqGSM49BAMCA0cAMEQCIHaG0P/WHLvLuzxlSpw8uKUFipe1P5nI\r\neX2Ux4A5whsjAiB/oqCDmEjUae5ckgXWS0rrtJdl/75PaI3c9WrqlcLeDA==\r\n-----END CERTIFICATE-----\r\n",
+      "key": "-----BEGIN PRIVATE KEY-----\r\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgAp3nUR84kQPtaYIw\r\nrWw2TqUr+DrRCu8qR/l4Yrel7yShRANCAARZa7yBnieBr90GMyu7lulOQgd+NTz7\r\nTK+2cQ1vRqgM3CBoKd1Bfk3paQnTbFb6VZLFBkPSy+Upmps9MEZQyVSj\r\n-----END PRIVATE KEY-----\r\n",
+      "en_cert": "",
+      "en_key": "",
+      "algorithm": "ECDSA",
+      "key_length": 2048,
+      "not_before": "2026-11-06T01:25:57+00:00",
+      "not_after": "2036-11-03T01:25:57+00:00",
+      "created_at": "2026-11-06T01:30:57.953936400+00:00"
+    },
+    {
+      "id": 2,
+      "root_id": 1,
+      "name": "",
+      "cn": "ssld Intermediate CA 01",
+      "o": "",
+      "c": "",
+      "cert": "-----BEGIN CERTIFICATE-----\r\nMIIBvzCCAWSgAwIBAgIVAOqZqbM6kLlyThrQip92GHu/iC7BMAoGCCqGSM49BAMC\r\nMC0xFTATBgNVBAMMDHNzbGQgUm9vdCBDQTEJMAcGA1UECgwAMQkwBwYDVQQGDAAw\r\nHhcNMjYxMTA2MDEyNjA3WhcNMzYxMTAzMDEyNjA3WjA4MSAwHgYDVQQDDBdzc2xk\r\nIEludGVybWVkaWF0ZSBDQSAwMTEJMAcGA1UECgwAMQkwBwYDVQQGDAAwWTATBgcq\r\nhkjOPQIBBggqhkjOPQMBBwNCAASpVmM4PIhSnAMw03nnSk1kT/foTcNQA9Ep/96L\r\ntIAZF8SqMfBhIofVibMIDAQjdISjiVy36bUdXaC1c0wxmXUco1YwVDAiBgNVHREE\r\nGzAZghdzc2xkIEludGVybWVkaWF0ZSBDQSAwMTAdBgNVHQ4EFgQU6pmpszqQuXJO\r\nGtCKn3YYe7+ILsEwDwYDVR0TAQH/BAUwAwEB/zAKBggqhkjOPQQDAgNJADBGAiEA\r\nida6oRG5b4PdrdChYxZlO2a2VDoI+TenYG3iV4oBx/ECIQC1F9Phaj72UcRDTsIg\r\nZXQCCdUhHcfvp/Ui/BZjvgmp9Q==\r\n-----END CERTIFICATE-----\r\n",
+      "key": "-----BEGIN PRIVATE KEY-----\r\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg/aRptEqtIfOHX9Cn\r\nw2MUGoG2UsS9SKyjcnpa56KaIx2hRANCAASpVmM4PIhSnAMw03nnSk1kT/foTcNQ\r\nA9Ep/96LtIAZF8SqMfBhIofVibMIDAQjdISjiVy36bUdXaC1c0wxmXUc\r\n-----END PRIVATE KEY-----\r\n",
+      "en_cert": "",
+      "en_key": "",
+      "algorithm": "ECDSA",
+      "key_length": 2048,
+      "not_before": "2026-11-06T01:26:07+00:00",
+      "not_after": "2036-11-03T01:26:07+00:00",
+      "created_at": "2026-11-06T01:31:07.628461500+00:00"
+    }
+  ],
+  "leaves": [
+    {
+      "id": 1,
+      "ca_id": 2,
+      "cn": "vault.internal.example.org",
+      "san": null,
+      "usage": 0,
+      "cert": "-----BEGIN CERTIFICATE-----\r\nMIIBiTCCAS6gAwIBAgIUYPzY07IHRl4h3OppNoX7tWPw090wCgYIKoZIzj0EAwIw\r\nODEgMB4GA1UEAwwXc3NsZCBJbnRlcm1lZGlhdGUgQ0EgMDExCTAHBgNVBAoMADEJ\r\nMAcGA1UEBgwAMB4XDTI2MTEwNjAxMjYwN1oXDTI2MTEwNzAxMjYwN1owJTEjMCEG\r\nA1UEAwwadmF1bHQuaW50ZXJuYWwuZXhhbXBsZS5vcmcwWTATBgcqhkjOPQIBBggq\r\nhkjOPQMBBwNCAARgiAMwUENskjZcY5bkts9Sz+b+F0tCLfrYOaSrSkm94kZ613de\r\nAC8hIJs+/7ksw81Ked+72pJfRVjC5hARZ23FoykwJzAlBgNVHREEHjAcghp2YXVs\r\ndC5pbnRlcm5hbC5leGFtcGxlLm9yZzAKBggqhkjOPQQDAgNJADBGAiEAvoMifMfl\r\npiuXoOE/W/drKbTQrMQqywe5psPEIcaagioCIQD3vXGtJl2O0P5XK4iCLZvqM9ho\r\nYYkyxWkEysHz5mVm3A==\r\n-----END CERTIFICATE-----\r\n",
+      "key": "-----BEGIN PRIVATE KEY-----\r\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgKGnFaO+YR0HdbWFM\r\nONoqNTQq4yfy5vVaqyCPlrjJlouhRANCAARgiAMwUENskjZcY5bkts9Sz+b+F0tC\r\nLfrYOaSrSkm94kZ613deAC8hIJs+/7ksw81Ked+72pJfRVjC5hARZ23F\r\n-----END PRIVATE KEY-----\r\n",
+      "en_cert": "",
+      "en_key": "",
+      "algorithm": "ECDSA",
+      "key_length": 0,
+      "not_before": "2026-11-06T01:26:07+00:00",
+      "not_after": "2026-11-07T01:26:07+00:00",
+      "created_at": "2026-11-06T01:31:07.691912800+00:00"
+    },
+    {
+      "id": 2,
+      "ca_id": 2,
+      "cn": "grafana.internal.example.org",
+      "san": null,
+      "usage": 0,
+      "cert": "-----BEGIN CERTIFICATE-----\r\nMIIBjTCCATKgAwIBAgIUXF29WNBAJEiQojFCw4oucaOOSe0wCgYIKoZIzj0EAwIw\r\nODEgMB4GA1UEAwwXc3NsZCBJbnRlcm1lZGlhdGUgQ0EgMDExCTAHBgNVBAoMADEJ\r\nMAcGA1UEBgwAMB4XDTI2MTEwNjAxMjYxM1oXDTI2MTEwNzAxMjYxM1owJzElMCMG\r\nA1UEAwwcZ3JhZmFuYS5pbnRlcm5hbC5leGFtcGxlLm9yZzBZMBMGByqGSM49AgEG\r\nCCqGSM49AwEHA0IABG9YyuOsig6+3yJCAIX6KZrYbxyzOOt9zlQBaQFz3v6aJxJw\r\nvfjUV+nDOtPpuC7YmdMh14T70VkUBnKKU7z+tESjKzApMCcGA1UdEQQgMB6CHGdy\r\nYWZhbmEuaW50ZXJuYWwuZXhhbXBsZS5vcmcwCgYIKoZIzj0EAwIDSQAwRgIhANIH\r\nWIqz0GPPYMI56y+T8+VIlWqaIZvOi46y8I+TaL4kAiEAkg6fgFonvDIpoI/tPPSA\r\noNQ0Gfk3LvJoK72JNi3jxck=\r\n-----END CERTIFICATE-----\r\n",
+      "key": "-----BEGIN PRIVATE KEY-----\r\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgxGuwvDplvkc1D5/O\r\nNuCjiJKNSFccxfcGnI6DmmEP0M2hRANCAARvWMrjrIoOvt8iQgCF+ima2G8cszjr\r\nfc5UAWkBc97+micScL341FfpwzrT6bgu2JnTIdeE+9FZFAZyilO8/rRE\r\n-----END PRIVATE KEY-----\r\n",
+      "en_cert": "",
+      "en_key": "",
+      "algorithm": "RSA",
+      "key_length": 0,
+      "not_before": "2026-11-06T01:26:13+00:00",
+      "not_after": "2026-11-07T01:26:13+00:00",
+      "created_at": "2026-11-06T01:31:13.291952700+00:00"
+    },
+    {
+      "id": 3,
+      "ca_id": 2,
+      "cn": "staging.internal.example.org",
+      "san": null,
+      "usage": 0,
+      "cert": "-----BEGIN CERTIFICATE-----\r\nMIIBjTCCATOgAwIBAgIVAIr84F3aRZnXMyK3GG8FHWBiRiupMAoGCCqGSM49BAMC\r\nMDgxIDAeBgNVBAMMF3NzbGQgSW50ZXJtZWRpYXRlIENBIDAxMQkwBwYDVQQKDAAx\r\nCTAHBgNVBAYMADAeFw0yNjExMDYwMTI3NDBaFw0yNjExMDcwMTI3NDBaMCcxJTAj\r\nBgNVBAMMHHN0YWdpbmcuaW50ZXJuYWwuZXhhbXBsZS5vcmcwWTATBgcqhkjOPQIB\r\nBggqhkjOPQMBBwNCAATC/IlwvMa1ZC5jI9I1ZeuahjCnZhH4NAWmRIIXQu+G9bN6\r\n1Kupggt6SjZGl6aaL70lRH8ysvJ0pnsCOrfOtXeooyswKTAnBgNVHREEIDAeghxz\r\ndGFnaW5nLmludGVybmFsLmV4YW1wbGUub3JnMAoGCCqGSM49BAMCA0gAMEUCIE64\r\nWLKWKgLRKWcXeEx4DNTbYHRsb3Ol35Bo0MDMN/kFAiEAz8vGyQ2bAuIWVCtMYeHH\r\nhxo6OP3hAkEpKAuJ/1ASeTg=\r\n-----END CERTIFICATE-----\r\n",
+      "key": "-----BEGIN PRIVATE KEY-----\r\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg+DXuSNwN5UhcJ0WC\r\nHQcvK4QsKF/eH8bJDqw0XxY39XGhRANCAATC/IlwvMa1ZC5jI9I1ZeuahjCnZhH4\r\nNAWmRIIXQu+G9bN61Kupggt6SjZGl6aaL70lRH8ysvJ0pnsCOrfOtXeo\r\n-----END PRIVATE KEY-----\r\n",
+      "en_cert": "",
+      "en_key": "",
+      "algorithm": "RSA",
+      "key_length": 0,
+      "not_before": "2026-11-06T01:27:40+00:00",
+      "not_after": "2026-11-07T01:27:40+00:00",
+      "created_at": "2026-11-06T01:32:40.404488+00:00"
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "2a3436fd-a385-4079-bc4c-62c01024e622",
+      "name": "notify-ops-channel",
+      "url": "https://hooks.example.org/ssld/abc123",
+      "events": [
+        "cert.issued",
+        "cert.renewal.*"
+      ],
+      "event_mode": "include",
+      "secret": "whsec-demo-123456",
+      "method": "POST",
+      "headers": null,
+      "body_template": "{\"id\":\"__id__\",\"event\":\"__event__\",\"created_at\":\"__created_at__\",\"source\":\"__source__\",\"data\":__payload__}",
+      "active": false,
+      "max_attempts": 1,
+      "backoff_seconds": 0,
+      "timeout_seconds": 0,
+      "skip_tls_verify": false,
+      "content_type": "application/json",
+      "created_at": "2026-11-06T01:31:21.166734600+00:00",
+      "updated_at": "2026-11-06T01:31:21.166750800+00:00",
+      "description": ""
+    }
+  ],
+  "deliveries": [],
+  "event_log": [
+    {
+      "id": "159161e1-a314-41dd-8ad1-2e09f61f66a0",
+      "event": "system.started",
+      "source": "system",
+      "payload": {
+        "address": "0.0.0.0:7979",
+        "mcp_path": "/mcp",
+        "mcp_tools": 15,
+        "rest_endpoints": 103,
+        "version": "1.0.0"
+      },
+      "created_at": "2026-11-06T01:30:25.708187500+00:00"
+    },
+    {
+      "id": "539d2829-0afa-4e57-9eaf-83465ca05b63",
+      "event": "access.created",
+      "source": "access",
+      "payload": {
+        "id": 1,
+        "kind": "dns",
+        "name": "cloudflare-main",
+        "provider": "cloudflare"
+      },
+      "created_at": "2026-11-06T01:30:41.984777300+00:00"
+    },
+    {
+      "id": "c38d2cfe-41ce-49c0-a3ff-ee4ad1ca66a0",
+      "event": "access.created",
+      "source": "access",
+      "payload": {
+        "id": 2,
+        "kind": "host",
+        "name": "prod-web-01",
+        "provider": "ssh"
+      },
+      "created_at": "2026-11-06T01:30:42.021088200+00:00"
+    },
+    {
+      "id": "f414f804-7c96-4a8d-9294-fadf672feea0",
+      "event": "ca.created",
+      "source": "private_ca",
+      "payload": {
+        "algorithm": "ECDSA",
+        "cn": "ssld Root CA",
+        "id": 1,
+        "root_id": 0
+      },
+      "created_at": "2026-11-06T01:30:57.955831900+00:00"
+    },
+    {
+      "id": "429e15a7-872a-44ec-951d-6a9408b7bd23",
+      "event": "ca.created",
+      "source": "private_ca",
+      "payload": {
+        "algorithm": "ECDSA",
+        "cn": "ssld Intermediate CA 01",
+        "id": 2,
+        "root_id": 1
+      },
+      "created_at": "2026-11-06T01:31:07.629801200+00:00"
+    },
+    {
+      "id": "060a2588-7510-4db8-a7f0-50f2e9062c52",
+      "event": "leaf.issued",
+      "source": "private_ca",
+      "payload": {
+        "ca_id": 2,
+        "cn": "vault.internal.example.org",
+        "id": 1
+      },
+      "created_at": "2026-11-06T01:31:07.693221300+00:00"
+    },
+    {
+      "id": "277a206f-9d4d-4341-802b-3b44ac72e5f5",
+      "event": "leaf.issued",
+      "source": "private_ca",
+      "payload": {
+        "ca_id": 2,
+        "cn": "grafana.internal.example.org",
+        "id": 2
+      },
+      "created_at": "2026-11-06T01:31:13.293633400+00:00"
+    },
+    {
+      "id": "02ffae7a-608d-4420-b636-ef4304fa5fd8",
+      "event": "cert.imported",
+      "source": "cert",
+      "payload": {
+        "domains": [
+          "vault.internal.example.org"
+        ],
+        "id": 1,
+        "issuer": "ssld Intermediate CA 01"
+      },
+      "created_at": "2026-11-06T01:32:34.130872400+00:00"
+    },
+    {
+      "id": "d4a174c1-fc8f-416e-9d38-e21f037af28d",
+      "event": "cert.imported",
+      "source": "cert",
+      "payload": {
+        "domains": [
+          "grafana.internal.example.org"
+        ],
+        "id": 2,
+        "issuer": "ssld Intermediate CA 01"
+      },
+      "created_at": "2026-11-06T01:32:34.137491200+00:00"
+    },
+    {
+      "id": "62d476c2-b095-4610-ae97-40bf3cc5cf0f",
+      "event": "leaf.issued",
+      "source": "private_ca",
+      "payload": {
+        "ca_id": 2,
+        "cn": "staging.internal.example.org",
+        "id": 3
+      },
+      "created_at": "2026-11-06T01:32:40.406272800+00:00"
+    },
+    {
+      "id": "35a7b616-16df-4638-a3b5-69ac25786a7f",
+      "event": "workflow.started",
+      "source": "workflow",
+      "payload": {
+        "exec_type": "manual",
+        "name": "issue-and-deploy-example-org",
+        "run_id": "f9bdc908-a62e-4ecf-a647-affb2fdc76ec",
+        "workflow_id": 1
+      },
+      "created_at": "2026-11-06T01:32:40.409938100+00:00"
+    },
+    {
+      "id": "9df0a064-80cc-426b-84c5-403ea5b6e993",
+      "event": "workflow.node_failed",
+      "source": "workflow",
+      "payload": {
+        "error": "contact email is required for ACME registration",
+        "node_id": "apply",
+        "node_type": "apply",
+        "run_id": "f9bdc908-a62e-4ecf-a647-affb2fdc76ec",
+        "workflow_id": 1
+      },
+      "created_at": "2026-11-06T01:32:40.421129500+00:00"
+    },
+    {
+      "id": "35729d01-0c2b-48be-b888-988324b5be16",
+      "event": "workflow.failed",
+      "source": "workflow",
+      "payload": {
+        "name": "issue-and-deploy-example-org",
+        "nodes": 2,
+        "run_id": "f9bdc908-a62e-4ecf-a647-affb2fdc76ec",
+        "status": "fail",
+        "workflow_id": 1
+      },
+      "created_at": "2026-11-06T01:32:40.434912200+00:00"
+    },
+    {
+      "id": "e66fab40-28a3-465b-ac9d-1897f851cf7a",
+      "event": "cert.expiring",
+      "source": "scheduler",
+      "payload": {
+        "cert_id": 1,
+        "days_left": 0,
+        "domains": [
+          "vault.internal.example.org"
+        ],
+        "end_time": "2026-11-07T01:26:07+00:00",
+        "sha256": "cfd70331912628df2bc4ea3b1784da0e5c3b662a1d7c053358f6d63a4de69dfc"
+      },
+      "created_at": "2026-11-06T01:33:05.718794700+00:00"
+    },
+    {
+      "id": "6a17a763-7fd0-4168-b480-18824e1e78fb",
+      "event": "cert.expiring",
+      "source": "scheduler",
+      "payload": {
+        "cert_id": 2,
+        "days_left": 0,
+        "domains": [
+          "grafana.internal.example.org"
+        ],
+        "end_time": "2026-11-07T01:26:13+00:00",
+        "sha256": "2695881f2c654d9f258e470005577be787b177700e30d2fb57e2903a5ec5dccb"
+      },
+      "created_at": "2026-11-06T01:33:05.722166100+00:00"
+    }
+  ],
+  "plugins": [],
+  "oplogs": [
+    {
+      "id": "83f5a8c4-ef83-48bf-84e0-ef7eecef047b",
+      "actor": "api",
+      "action": "webhook.create",
+      "target": "2a3436fd-a385-4079-bc4c-62c01024e622",
+      "detail": {
+        "events": [
+          "cert.issued",
+          "cert.renewal.*"
+        ],
+        "url": "https://hooks.example.org/ssld/abc123"
+      },
+      "created_at": "2026-11-06T01:31:21.168213400+00:00"
+    }
+  ],
+  "jobs": [],
+  "counters": {
+    "access": 2,
+    "ca": 2,
+    "cert": 2,
+    "channel": 1,
+    "leaf": 3,
+    "monitor": 2,
+    "workflow": 1
+  }
+}
